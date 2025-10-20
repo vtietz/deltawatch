@@ -18,9 +18,13 @@ import pytest
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from rich.console import Console
-from watchdog.events import (DirCreatedEvent, FileCreatedEvent,
-                             FileDeletedEvent, FileModifiedEvent,
-                             FileMovedEvent)
+from watchdog.events import (
+    DirCreatedEvent,
+    FileCreatedEvent,
+    FileDeletedEvent,
+    FileModifiedEvent,
+    FileMovedEvent,
+)
 
 from deltawatch import DirectoryChangeTracker, get_dir_size, human_bytes
 

@@ -92,7 +92,7 @@ jobs:
     
     - name: Check import ordering with isort
       run: |
-        isort --check-only deltawatch.py tests/
+        isort --check-only --profile black deltawatch.py tests/
 
   test-summary:
     name: Test Summary
