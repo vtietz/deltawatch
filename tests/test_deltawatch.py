@@ -382,6 +382,9 @@ class TestIntegration:
         tracker = DirectoryChangeTracker(console)
 
         with tempfile.TemporaryDirectory() as tmpdir:
+            # Resolve symlinks (important for macOS where /var -> /private/var)
+            tmpdir_real = os.path.realpath(tmpdir)
+
             observer = Observer()
             observer.schedule(tracker, tmpdir, recursive=False)
             observer.start()
@@ -400,7 +403,12 @@ class TestIntegration:
 
                 # Verify event was tracked
                 assert tracker.total_events > 0
-                assert tmpdir in tracker.dir_changes
+
+                # Check if either the original path or the real path is in dir_changes
+                # (handles macOS symlink case: /var -> /private/var)
+                assert (
+                    tmpdir in tracker.dir_changes or tmpdir_real in tracker.dir_changes
+                ), f"Neither {tmpdir} nor {tmpdir_real} found in {list(tracker.dir_changes.keys())}"
 
             finally:
                 observer.stop()
