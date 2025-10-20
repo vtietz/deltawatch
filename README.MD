@@ -1,5 +1,9 @@
 # DeltaWatch
 
+![Tests](https://github.com/vtietz/deltawatch/workflows/Tests/badge.svg)
+![Python](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+
 An event-driven directory monitoring tool that tracks filesystem changes in real-time using OS-level filesystem events. DeltaWatch provides instant notifications of file and directory modifications without the need for periodic scanning.
 
 ## Features
@@ -201,3 +205,40 @@ Press `Ctrl+C` to stop monitoring. A summary will be displayed showing:
 ## License
 
 This script is provided as-is for monitoring filesystem changes.
+
+## Development
+
+### Running Tests
+
+The project includes a comprehensive test suite using pytest. To run the tests:
+
+```bash
+# Run all tests
+pytest tests/ -v
+
+# Run tests with coverage report
+pytest tests/ --cov=deltawatch --cov-report=term-missing
+
+# Run tests with HTML coverage report
+pytest tests/ --cov=deltawatch --cov-report=html
+```
+
+### Continuous Integration
+
+The project uses GitHub Actions to automatically run tests on:
+- **Python versions**: 3.8, 3.9, 3.10, 3.11, 3.12
+- **Operating systems**: Ubuntu, Windows, macOS
+
+Tests run automatically on push to main/develop branches and on pull requests.
+
+### Test Coverage
+
+Current test coverage includes:
+- Helper functions (`human_bytes`, `get_dir_size`)
+- `DirectoryChangeTracker` class functionality
+- Event handling (create, modify, delete, move)
+- Size delta calculations
+- Time-based filtering
+- Exclusion patterns
+- Integration tests with real filesystem events
+

@@ -1,1 +1,22 @@
+# Virtual Environment
 .venv/
+venv/
+env/
+
+# Coverage reports
+.cover
+.coverage
+htmlcov/
+coverage.xml
+
+# Pytest cache
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swoage
