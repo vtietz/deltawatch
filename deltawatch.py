@@ -13,20 +13,19 @@ import argparse
 import os
 import sys
 import time
+from collections import defaultdict, deque
 from datetime import datetime, timedelta
 from pathlib import Path
-from collections import defaultdict, deque
-from typing import Dict, Set, Deque, Optional, List
-
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler, FileSystemEvent
+from typing import Deque, Dict, List, Optional, Set
 
 from rich.console import Console
-from rich.live import Live
-from rich.table import Table
-from rich.panel import Panel
-from rich.text import Text
 from rich.layout import Layout
+from rich.live import Live
+from rich.panel import Panel
+from rich.table import Table
+from rich.text import Text
+from watchdog.events import FileSystemEvent, FileSystemEventHandler
+from watchdog.observers import Observer
 
 
 def human_bytes(n: int) -> str:

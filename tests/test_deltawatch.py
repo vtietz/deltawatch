@@ -8,27 +8,21 @@ import os
 import sys
 import tempfile
 import time
-from pathlib import Path
-from datetime import datetime, timedelta
 from collections import defaultdict
+from datetime import datetime, timedelta
+from pathlib import Path
+
 import pytest
 
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from deltawatch import (
-    human_bytes,
-    get_dir_size,
-    DirectoryChangeTracker,
-)
-from watchdog.events import (
-    FileCreatedEvent,
-    FileDeletedEvent,
-    FileModifiedEvent,
-    FileMovedEvent,
-    DirCreatedEvent,
-)
 from rich.console import Console
+from watchdog.events import (DirCreatedEvent, FileCreatedEvent,
+                             FileDeletedEvent, FileModifiedEvent,
+                             FileMovedEvent)
+
+from deltawatch import DirectoryChangeTracker, get_dir_size, human_bytes
 
 
 class TestHumanBytes:
